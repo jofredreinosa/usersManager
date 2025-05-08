@@ -5,7 +5,6 @@ import {
   EventEmitter,
   signal,
   computed,
-  effect,
   inject, OnChanges, SimpleChanges
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
