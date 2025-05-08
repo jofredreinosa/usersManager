@@ -48,10 +48,10 @@
     <ng-container matColumnDef="actions">
         <th class="text-center" mat-header-cell *matHeaderCellDef>Acciones</th>
         <td class="text-center" mat-cell *matCellDef="let user">
-            <button mat-icon-button (click)="edit.emit(user.id)" class="edit-btn" matTooltip="Editar usuario">
+            <button mat-icon-button (click)="edit.emit(user)" class="edit-btn" matTooltip="Editar usuario">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="delete.emit(user.id)" class="delete-btn" matTooltip="Eliminar usuario">
+            <button mat-icon-button (click)="delete.emit(user)" class="delete-btn" matTooltip="Eliminar usuario">
                 <mat-icon>delete_outline</mat-icon>
             </button>
         </td>

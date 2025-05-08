@@ -40,6 +40,11 @@ export class UserService {
     this.signalUsers.set(apiUsers);
   }
 
+  deleteUser(id: string): void {
+    const updated = this.signalUsers().filter(user => user.id !== id);
+    this.signalUsers.set(updated);
+  }
+
   private fetchUsersFromApi(): Promise<User[]> {
     return firstValueFrom(
       this.http.get<any>(`${this.apiUrl}?results=10&nat=gb`).pipe(

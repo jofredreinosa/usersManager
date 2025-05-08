@@ -51,7 +51,7 @@ export class ListUsersComponent implements OnChanges {
   readonly displayedUsers = this.signalUsers.asReadonly();
 
   @Output() edit = new EventEmitter<string>();
-  @Output() delete = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<User>();
   @Output() add = new EventEmitter<void>();
 
   private breakpointObserver = inject(BreakpointObserver);

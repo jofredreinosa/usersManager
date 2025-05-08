@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { UserService } from './user.service';
-import { environment } from '../../environments/environment';
+import {TestBed} from '@angular/core/testing';
+import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {UserService} from './user.service';
+import {environment} from '../../environments/environment';
 import {User} from "../models/users.model";
 
 describe('UserService', () => {
@@ -54,15 +54,14 @@ describe('UserService', () => {
     const mockApiResponse = { results: [mockUser] };
     const expectedUsers: User[] = [mappedUser];
 
-    const usersPromise = service.getUsers();
+    const usersPromise = service.users();
 
     const req = httpMock.expectOne(`${apiUrl}?results=10&nat=gb`);
     expect(req.request.method).toBe('GET');
 
     req.flush(mockApiResponse);
 
-    const users = await usersPromise;
-    expect(users).toEqual(expectedUsers);
+    expect(usersPromise).toEqual(expectedUsers);
   });
 
 });

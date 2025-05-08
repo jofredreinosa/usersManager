@@ -3,6 +3,7 @@ export interface User {
   dob: string;
   email: string;
   fullName: string;
+  id: string;
   thumbnail: string;
   userName: string;
 }

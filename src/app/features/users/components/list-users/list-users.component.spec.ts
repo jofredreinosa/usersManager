@@ -49,7 +49,7 @@ describe('ListUsersComponent', () => {
 
   it('Should emit delete event', () => {
     spyOn(component.delete, 'emit');
-    component.delete.emit('1');
-    expect(component.delete.emit).toHaveBeenCalledWith('1');
+    component.delete.emit(mockUsers[0]);
+    expect(component.delete.emit).toHaveBeenCalledWith(mockUsers[0]);
   });
 });

@@ -1,0 +1,35 @@
+<div
+        class="confirmation-dialog"
+        cdkTrapFocus
+>
+    <div mat-dialog-content>
+        <div class="message">{{ data.message }}</div>
+        @if (data.optionalMsg) {
+            <p
+                    class="optional-message"
+            >
+                {{ data.optionalMsg }}
+            </p>
+        }
+    </div>
+    <div mat-dialog-actions>
+        <div class="actions mt-4">
+            <button
+                    mat-stroked-button
+                    type="button"
+                    [mat-dialog-close]="false"
+                    color="primary"
+            >
+                {{ data.textBtnCancel }}
+            </button>
+            <button
+                    mat-raised-button
+                    color="primary"
+                    type="button"
+                    [mat-dialog-close]="true"
+            >
+                {{ data.textBtnConfirm }}
+            </button>
+        </div>
+    </div>
+</div>

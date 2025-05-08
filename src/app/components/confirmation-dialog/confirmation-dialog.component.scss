@@ -1,0 +1,36 @@
+.confirmation-dialog {
+  padding: 24px;
+}
+
+.message {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+}
+
+.optional-message {
+  width: 100%;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 24px;
+  width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}
