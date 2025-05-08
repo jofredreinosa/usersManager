@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom, map} from "rxjs";
 import {environment} from "../../environments/environment";
@@ -18,6 +18,13 @@ export interface User {
 export class UserService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
+
+  readonly users = signal<User[]>([]);
+
+  async loadUsers(): Promise<void> {
+    const data = await this.getUsers();
+    this.users.set(data);
+  }
 
   getUsers(): Promise<User[]> {
     const users = this.http.get<User[]>(`${this.apiUrl}?results=10&nat=gb`)
