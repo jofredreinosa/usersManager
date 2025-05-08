@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UsersComponent } from './users.component';
 import { UserService } from '../../services/user.service';
 import { signal } from '@angular/core';
-import { User } from '../../services/user.service';
+import {User} from "../../models/users.model";
 
 describe('UsersComponent', () => {
   let component: UsersComponent;

@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { UserService, User } from './user.service';
+import { UserService } from './user.service';
 import { environment } from '../../environments/environment';
+import {User} from "../models/users.model";
 
 describe('UserService', () => {
   let service: UserService;

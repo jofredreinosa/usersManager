@@ -2,15 +2,7 @@ import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom, map} from "rxjs";
 import {environment} from "../../environments/environment";
-
-export interface User {
-  cellPhone: string;
-  dob: string;
-  email: string;
-  fullName: string;
-  thumbnail: string;
-  userName: string;
-}
+import {User} from "../models/users.model";
 
 @Injectable({
   providedIn: 'root'
