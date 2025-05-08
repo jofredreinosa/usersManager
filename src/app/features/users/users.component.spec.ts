@@ -1,23 +1,58 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UsersComponent } from './users.component';
+import { UserService } from '../../services/user.service';
+import { signal } from '@angular/core';
+import { User } from '../../services/user.service';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
+  let userServiceMock: any;
+  let usersSignal = signal<User[]>([]);
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UsersComponent]
-    })
-    .compileComponents();
+  const mockUsers: User[] = [
+    {
+      cellPhone: '07700 900123',
+      dob: '1985-05-15T00:00:00Z',
+      email: 'usuario1@ejemplo.com',
+      fullName: 'Ana García',
+      thumbnail: 'https://ejemplo.com/imagen1.jpg',
+      userName: 'anagarcia'
+    }
+  ];
+
+  beforeEach(() => {
+    userServiceMock = {
+      users: usersSignal,
+      loadUsers: jasmine.createSpy('loadUsers').and.callFake(() => {
+        usersSignal.set(mockUsers);
+        return Promise.resolve();
+      })
+    };
+
+    TestBed.configureTestingModule({
+      imports: [UsersComponent],
+      providers: [
+        { provide: UserService, useValue: userServiceMock }
+      ]
+    });
 
     fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create the component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('ngOnInit(): Should call loadUsers()', () => {
+    expect(userServiceMock.loadUsers).not.toHaveBeenCalled();
+    fixture.detectChanges();
+    expect(userServiceMock.loadUsers).toHaveBeenCalled();
+  });
+
+  it('Should have access to users through the service signal', () => {
+    fixture.detectChanges();
+    expect(component.users()).toEqual(mockUsers);
   });
 });

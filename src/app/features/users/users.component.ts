@@ -13,7 +13,8 @@ export class UsersComponent implements OnInit {
  readonly users = this.userService.users;
 
   ngOnInit(): void {
-    this.loadUsersData();
+    void this.userService.loadUsers();
+    //this.loadUsersData();
   }
 
   private loadUsersData() {
