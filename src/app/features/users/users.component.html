@@ -1,1 +1,14 @@
-<p>users works!</p>
+<div class="container">
+    <div class="header">
+        <h1>Usuarios</h1>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="users-list">
+        <app-list-users
+                [users]="users()"
+                (edit)="onEdit($event)"
+                (delete)="onDelete($event)"
+                (add)="onAdd()"
+        />
+    </div>
+</div>

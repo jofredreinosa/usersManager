@@ -1,0 +1,33 @@
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+
+}
+.search-field {
+  width:40%;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+}
+
+.add-button {
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.edit-btn {
+  color: blue;
+}
+
+.delete-btn {
+  color: red;
+}
