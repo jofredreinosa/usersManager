@@ -16,7 +16,11 @@ export class SnackService {
 
   open(message: string, type = 'success', durationInSeconds = 5): void {
     const icon = { success: 'check', error: 'warning', info: 'info' }[type];
-    const panelClass = { success: 'snack-success', error: 'snack-error', info: 'snack-info' }[type];
+    const panelClass = {
+      success: 'snack-success',
+      error: 'snack-error',
+      info: 'snack-info'
+    }[type];
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: durationInSeconds * 1000,
       data: { message, icon, type },

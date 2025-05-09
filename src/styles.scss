@@ -1,6 +1,5 @@
 html, body { height: 100%; }
 body {
-  --mat-sys-inverse-surface: transparent;
   margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container {
@@ -18,17 +17,20 @@ body {
 }
 
 .snack-success {
+  --mat-sys-inverse-surface: transparent;
   background-color: #edfbef;
   color: green;
 }
 
 .snack-error {
   background-color: #da4040;
+  --mat-sys-inverse-surface: transparent;
   color: #ffffff;
 }
 .snack-info {
   background-color: #005cbb;
   color: #ffffff;
+  --mat-sys-inverse-surface: transparent;
 }
 
 
