@@ -50,7 +50,7 @@ export class ListUsersComponent implements OnChanges {
   }
   readonly displayedUsers = this.signalUsers.asReadonly();
 
-  @Output() edit = new EventEmitter<string>();
+  @Output() edit = new EventEmitter<User>();
   @Output() delete = new EventEmitter<User>();
   @Output() add = new EventEmitter<void>();
 
@@ -97,4 +97,9 @@ export class ListUsersComponent implements OnChanges {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
   }
+
+  resetPage(): void {
+    this.pageIndex.set(0);
+  }
+
 }

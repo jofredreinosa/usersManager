@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="header">
+        <h1>{{pageTitle()}}</h1>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="user-form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre completo</mat-label>
+                <input matInput formControlName="fullName" />
+                @if (formCtrl['fullName'].hasError('required')) {
+                    <mat-error>Es requerido</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Usuario</mat-label>
+                <input matInput formControlName="userName" />
+                @if (formCtrl['userName'].hasError('required')) {
+                    <mat-error>Es requerido</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" />
+                @if (formCtrl['email'].hasError('required')) {
+                    <mat-error>Es requerido</mat-error>
+                }
+                @if (formCtrl['email'].errors && !formCtrl['email'].hasError('required')) {
+                    <mat-error>El email no es válido</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                @if (formCtrl['dob'].hasError('required')) {
+                    <mat-error>Es requerido</mat-error>
+                }
+                @if (!formCtrl['dob'].hasError('required') && formCtrl['dob'].hasError('minAge')) {
+                    <mat-error>Debe ser mayor de edad</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Teléfono</mat-label>
+                <input matInput formControlName="cellPhone" />
+                @if (formCtrl['cellPhone'].hasError('required')) {
+                    <mat-error>Es requerido</mat-error>
+                }
+            </mat-form-field>
+
+            <div class="form-actions">
+                <button mat-stroked-button type="button" (click)="goBack()">
+                    <div class="button-caption">
+                        <mat-icon>arrow_back</mat-icon>
+                        <span>Volver</span>
+                    </div>
+                </button>
+                <button mat-flat-button color="primary" type="submit">
+                    <div class="button-caption">
+                        <mat-icon>save</mat-icon>
+                        <span>
+                            {{ isEditMode() ? 'Actualizar' : 'Crear' }}
+                        </span>
+                    </div>
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

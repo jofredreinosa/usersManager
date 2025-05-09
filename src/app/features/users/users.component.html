@@ -6,9 +6,9 @@
     <div class="users-list">
         <app-list-users
                 [users]="users()"
-                (edit)="onEdit($event)"
-                (delete)="onDelete($event)"
-                (add)="onAdd()"
+                (edit)="edit($event)"
+                (delete)="delete($event)"
+                (add)="add()"
         />
     </div>
 </div>

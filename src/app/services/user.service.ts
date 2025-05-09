@@ -45,6 +45,16 @@ export class UserService {
     this.signalUsers.set(updated);
   }
 
+  addUser(user: User): void {
+    this.signalUsers.update(users => [...users, user]);
+  }
+
+  updateUser(id: string, changes: Partial<User>): void {
+    this.signalUsers.update(users =>
+      users.map(u => (u.id === id ? { ...u, ...changes } : u))
+    );
+  }
+
   private fetchUsersFromApi(): Promise<User[]> {
     return firstValueFrom(
       this.http.get<any>(`${this.apiUrl}?results=10&nat=gb`).pipe(

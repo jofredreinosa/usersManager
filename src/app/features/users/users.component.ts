@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {ListUsersComponent} from "./components/list-users/list-users.component";
 import {MatDivider} from "@angular/material/divider";
@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent, DialogData} from "../../components/confirmation-dialog/confirmation-dialog.component";
 import {User} from "../../models/users.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
+  @ViewChild(ListUsersComponent) listUsersRef!: ListUsersComponent;
   private dialog = inject(MatDialog);
+  private router = inject(Router);
   private snack = inject(MatSnackBar);
   private userService = inject(UserService);
 
@@ -27,11 +30,16 @@ export class UsersComponent implements OnInit {
     this.loadUsersData();
   }
 
-  onEdit(id: string): void {
-    console.log('Editar usuario', id);
+  add(): void {
+    void this.router.navigate(['/users/create']);
   }
 
-  onDelete(userToDelete: User) {
+  edit(user: User): void {
+    console.info(user.id);
+    void this.router.navigate(['/users/edit', user.id]);
+  }
+
+  delete(userToDelete: User) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: <DialogData>{
         message: '¿Estás seguro?',
@@ -49,20 +57,15 @@ export class UsersComponent implements OnInit {
     });
   }
 
-
-  onAdd(): void {
-    console.log('Agregar usuario');
-  }
-
   private loadUsersData() {
     void this.userService.loadUsers();
   }
 
   private peformUserDelete(user: User) {
     try {
-
       this.userService.deleteUser(user.id);
       this.sendFeedback(user);
+      this.listUsersRef.resetPage();
     }
     catch (e) {
       console.error(e);

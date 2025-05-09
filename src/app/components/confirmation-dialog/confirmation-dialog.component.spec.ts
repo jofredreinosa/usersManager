@@ -22,7 +22,7 @@ describe('ConfirmationDialogComponent', () => {
         ConfirmationDialogComponent,
         MatDialogModule,
         MatButtonModule,
-        A11yModule
+        A11yModule,
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: mockDialogData }

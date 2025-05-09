@@ -1,0 +1,27 @@
+.user-form {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.button-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
