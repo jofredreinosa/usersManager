@@ -66,7 +66,7 @@ export class CreateOrEditUsersComponent implements OnInit {
   onSubmit(): void {
     if (!this.formService.validateForm(this.form)) {
       const errorMessage = 'Complete los datos necesarios para continuar'
-      this.sendFeedback(errorMessage);
+      this.sendFeedback(errorMessage, 'error');
       return;
     }
 
@@ -86,8 +86,6 @@ export class CreateOrEditUsersComponent implements OnInit {
   private loadUserForEdition(): void {
     const found = this.userService.users().find(u => u.id === this.userId()) ?? null;
     if (!found) {
-      const errorMessage = `Usuario con id ${this.userId()} no fue encontrado.`
-      this.sendFeedback(errorMessage);
       this.goBack();
       return;
     }
