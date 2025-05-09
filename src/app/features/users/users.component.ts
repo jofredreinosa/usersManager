@@ -5,8 +5,8 @@ import {MatDivider} from "@angular/material/divider";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent, DialogData} from "../../components/confirmation-dialog/confirmation-dialog.component";
 import {User} from "../../models/users.model";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {SnackService} from "../../services/snack.service";
 
 @Component({
   selector: 'app-users',
@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(ListUsersComponent) listUsersRef!: ListUsersComponent;
   private dialog = inject(MatDialog);
   private router = inject(Router);
-  private snack = inject(MatSnackBar);
+  private snack = inject(SnackService);
   private userService = inject(UserService);
 
   readonly users = this.userService.users;
@@ -73,10 +73,6 @@ export class UsersComponent implements OnInit {
   }
 
   private sendFeedback(user: User): void {
-    this.snack.open(`Usuario ${user.fullName} eliminado con éxito`, 'OK', {
-      duration: 5000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-    })
+    this.snack.open(`Usuario ${user.fullName} eliminado con éxito`,'success',60);
   }
 }

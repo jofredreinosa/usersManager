@@ -1,0 +1,20 @@
+<button
+  class="snack-bar-container"
+  (click)="snackBarRef.dismissWithAction()"
+  [ngClass]="{ success: 'snack-success', error: 'snack-error', info: 'snack-info' }[data.type]"
+>
+  <div class="message-container">
+    <mat-icon
+      class="material-symbols-outlined message-icon"
+      [ngClass]="{ success: 'color-success', error: 'color-error', info: 'color-info' }[data.type]"
+    >
+      {{ data.icon }}
+    </mat-icon>
+    <span
+      class=""
+      matSnackBarLabel
+    >
+      {{ data.message }}
+    </span>
+  </div>
+</button>

@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserService } from "../../../../services/user.service";
 import { User } from "../../../../models/users.model";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -15,6 +14,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {environment} from "../../../../../environments/environment";
 import {CustomValidators} from "../../../../Validators/custom.validator";
+import {SnackService} from "../../../../services/snack.service";
 
 @Component({
   selector: 'app-create-or-edit-user',
@@ -39,7 +39,7 @@ export class CreateOrEditUsersComponent implements OnInit {
   private originalData = '';
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private snack = inject(MatSnackBar);
+  private snack = inject(SnackService);
   private userService = inject(UserService);
 
   readonly isEditMode = computed(() => !!this.userId());
@@ -119,7 +119,7 @@ export class CreateOrEditUsersComponent implements OnInit {
     const modifiedData = JSON.stringify(updatedUser);
     if (this.originalData === modifiedData) {
       const feedbackMessage = 'Nada ha cambiado, no hay nada que actualizar.';
-      this.sendFeedback(feedbackMessage);
+      this.sendFeedback(feedbackMessage, 'info');
       return false;
     }
     return true;
@@ -138,12 +138,8 @@ export class CreateOrEditUsersComponent implements OnInit {
     this.goBack();
   }
 
-  private sendFeedback(message: string) {
-    this.snack.open(message, 'OK', {
-      duration: 5000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-    });
+  private sendFeedback(message: string, type = 'success'): void {
+    this.snack.open(message, type);
   }
 
   private setUserValues(found: User) {

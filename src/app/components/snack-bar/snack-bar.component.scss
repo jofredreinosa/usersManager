@@ -1,0 +1,44 @@
+.snack-bar-container {
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.message-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.message-icon {
+  margin-left: 16px;
+}
+
+.color-success {
+  color: green !important;
+}
+
+.color-error {
+  color: #fff !important;
+}
+
+.color-info {
+  color: #fff !important;
+}
+
+.bg-success {
+  background-color: green !important;
+}
+
+.bg-error {
+  background-color: #fff !important;
+}
+
+.bg-info {
+  background-color: #fff !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface {
+  background-color: transparent !important;
+}

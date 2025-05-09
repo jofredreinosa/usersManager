@@ -1,5 +1,7 @@
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  --mat-sys-inverse-surface: transparent;
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container {
   margin: 2rem;
@@ -14,4 +16,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-mdc-cell.text-center {
   text-align: center;
 }
+
+.snack-success {
+  background-color: #edfbef;
+  color: green;
+}
+
+.snack-error {
+  background-color: #da4040;
+  color: #ffffff;
+}
+.snack-info {
+  background-color: #005cbb;
+  color: #ffffff;
+}
+
 
