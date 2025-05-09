@@ -12,6 +12,7 @@ describe('UsersComponent', () => {
 
   const mockUsers: User[] = [
     {
+      id: '1234567890',
       cellPhone: '07700 900123',
       dob: '1985-05-15T00:00:00Z',
       email: 'usuario1@ejemplo.com',

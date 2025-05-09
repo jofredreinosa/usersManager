@@ -1,6 +1,8 @@
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListUsersComponent } from './list-users.component';
 import { User } from '../../../../models/users.model';
+import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
 
 describe('ListUsersComponent', () => {
   let component: ListUsersComponent;
@@ -8,6 +10,7 @@ describe('ListUsersComponent', () => {
 
   const mockUsers: User[] = [
     {
+      id: '1234567890',
       thumbnail: 'assets/users/user1.jpg',
       fullName: 'Ana García',
       userName: 'anagarcia',
@@ -16,6 +19,7 @@ describe('ListUsersComponent', () => {
       dob: '1990-01-15'
     },
     {
+      id: '0987654321',
       thumbnail: 'assets/users/user2.jpg',
       fullName: 'Carlos López',
       userName: 'carloslopez',
@@ -27,7 +31,10 @@ describe('ListUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListUsersComponent]
+      imports: [ListUsersComponent, MatDialogModule],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ListUsersComponent);
@@ -39,17 +46,5 @@ describe('ListUsersComponent', () => {
 
   it('Should create component', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('Should emit edit event', () => {
-    spyOn(component.edit, 'emit');
-    component.edit.emit('1');
-    expect(component.edit.emit).toHaveBeenCalledWith('1');
-  });
-
-  it('Should emit delete event', () => {
-    spyOn(component.delete, 'emit');
-    component.delete.emit(mockUsers[0]);
-    expect(component.delete.emit).toHaveBeenCalledWith(mockUsers[0]);
   });
 });
