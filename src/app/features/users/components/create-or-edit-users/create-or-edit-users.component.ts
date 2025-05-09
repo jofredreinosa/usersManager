@@ -13,7 +13,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {environment} from "../../../../../environments/environment";
-import {CustomValidators} from "../../../../Validators/custom.validator";
+import {CustomValidators} from "../../../../validators/custom.validator";
 import {SnackService} from "../../../../services/snack.service";
 
 @Component({
